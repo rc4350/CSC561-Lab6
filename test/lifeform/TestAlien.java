@@ -14,6 +14,14 @@ import recovery.RecoveryNone;
 
 public class TestAlien
 {
+    // Lab 6 Tests
+    @Test
+    public void testConstruct()
+    {
+        LifeForm bob = new Alien("Bob", 40);
+        assertNotNull(bob);
+        assertEquals(2,bob.getSpeed());
+    }
 	
 	//lab 3 tests
 	@Test
@@ -116,12 +124,7 @@ public class TestAlien
 	}
 	
 	//lab 1-2 tests
-	@Test
-	public void testConstruct()
-	{
-		LifeForm bob = new Alien("Bob", 40);
-		assertNotNull(bob);
-	}
+
 
 	@Test
 	public void testLinearRecovery()

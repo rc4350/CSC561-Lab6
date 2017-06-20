@@ -1,6 +1,6 @@
 package lifeform;
 /**
- * 
+ *
  * @author Ryan Campbell
  * holds human lifeform
  *
@@ -8,7 +8,7 @@ package lifeform;
 public class Human extends LifeForm
 {
 	private int myarmor; //holds armor points for human
-	
+
 	/**
 	 * constructor with name, life, armor
 	 * @param name name of human
@@ -24,8 +24,9 @@ public class Human extends LifeForm
 		{
 			setArmorPoints(0);
 		}
+		speed = 3;
 		super.setAttackPoints(5);
-		
+
 	}
 	/**
 	 * constructor with name, life, armor, and attack points
@@ -65,7 +66,7 @@ public class Human extends LifeForm
 			return true;
 		}
 	}
-	
+
 	/**
 	 * overide take hit method to work with human's armor
 	 */

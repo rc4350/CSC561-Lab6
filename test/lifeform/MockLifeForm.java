@@ -15,6 +15,15 @@ public class MockLifeForm extends LifeForm
 	{
 		super(name, hp, ap);
 	}
-	
+
+	/**
+	 * Just for testing movement.
+	 * @param value
+	 */
+	public void setSpeed(int value)
+	{
+	    speed = value;
+	}
+
 
 }

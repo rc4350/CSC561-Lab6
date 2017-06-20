@@ -7,31 +7,38 @@ import weapon.Weapon;
 
 
 /**
- * 
+ *
  * Keeps track of the information associated with a simple life form.
  * Also provides the functionality related to the life form
  *@author Ryan Campbell, Deema Alrashdan
  */
 public class LifeForm implements TimeObserver
 {
-	protected String myName;
+	public static final char NORTH = 'n';
+	public static final char SOUTH = 's';
+	public static final char EAST = 'e';
+	public static final char WEST = 'w';
+
+    protected String myName;
 	protected int currentLifePoints;
 	protected int attackPoints;
 	protected Timer tracker;
 	protected int round;
     protected Weapon baseWeapon;
     protected int location[];
-	
-	
-	
+    protected char currentDirection;
+    protected int speed;
+
+
+
 	/**
 	 * create an instance
-	 * 
+	 *
 	 * @param name the name of the life form
 	 * @param points the current starting life points of the life form
-	 * @param ap 
+	 * @param ap
 	 */
-	public LifeForm(String name, int hp) 
+	public LifeForm(String name, int hp)
 	{
 		// TODO Auto-generated constructor stub
 		myName = name;
@@ -41,14 +48,16 @@ public class LifeForm implements TimeObserver
 			currentLifePoints = 0;
 		}
 		location = new int[2];
+		speed = 0;
+		currentDirection = NORTH;
 	}
 	public LifeForm(String name, int hp, int ap)
 	{
 		this(name, hp);
 		attackPoints = ap;
 	}
-	
-	
+
+
 	/**
 	 * pickUpWeapon
 	 * Life form pickup a weapon if doesn't have a weapon
@@ -61,19 +70,19 @@ public class LifeForm implements TimeObserver
 			baseWeapon = wp;
 		}
 	}
-	
+
 	/**
 	 * dropWeapon
-	 * Life form drop the weapon 
+	 * Life form drop the weapon
 	 */
 	public void dropWeapon()
 	{
 		baseWeapon = null;
 	}
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * @return the name of the life form.
 	 */
 	public String getName() {
@@ -81,7 +90,7 @@ public class LifeForm implements TimeObserver
 		return myName;
 	}
 	/**
-	 * 
+	 *
 	 * @return the amount of current life points the life form has.
 	 */
 	public int getCurrentLifePoints() {
@@ -130,7 +139,7 @@ public class LifeForm implements TimeObserver
 			return 0;
 		}
 		// TODO Auto-generated method stub
-		else 
+		else
 			return attackPoints;
 	}
 	protected void setAttackPoints(int sap)
@@ -140,13 +149,13 @@ public class LifeForm implements TimeObserver
 	public void addTimer(SimpleTimer timr)
 	{
 		tracker = timr;
-		
+
 	}
 	@Override
 	public void updateTime(int time)
 	{
 		round = tracker.getRound();
-		
+
 	}
 	/**
 	 * set's the location of lifeForm in the environment
@@ -160,7 +169,7 @@ public class LifeForm implements TimeObserver
 	}
 	/**
 	 * get's lifeForms location
-	 * @return returns location 
+	 * @return returns location
 	 */
 	public int[] getLocation()
 	{
@@ -194,9 +203,37 @@ public class LifeForm implements TimeObserver
 			y =Math.abs((targetLocation[1] - location[1])*5);
 			distance = (int) Math.sqrt((x*x)+(y*y));
 			return distance;
-			
+
 		}
-		
+
 	}
+
+	/**
+	 *
+	 * @return How many spaces the LifeForm moves.
+	 */
+    public int getSpeed()
+    {
+        return speed;
+    }
+    /**
+     *
+     * @return The direction the LifeForm is facing.
+     */
+    public char getCurrentDirection()
+    {
+        return currentDirection;
+    }
+    /**
+     * Changes the direction the LifeForm is facing.
+     *
+     * TODO Should make sure it is one of the four valid directions - Not required for Lab 6.
+     * @param dir
+     */
+    public void changeDirection(char dir)
+    {
+        currentDirection = dir;
+
+    }
 }
 

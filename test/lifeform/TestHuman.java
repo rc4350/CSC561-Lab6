@@ -10,6 +10,19 @@ import org.junit.Test;
  */
 public class TestHuman
 {
+    // Lab 6 Tests
+    @Test
+    public void testConstruct()
+    {
+        LifeForm lform = new Human("Bob", 40, 10);
+        assertNotNull(lform);
+        assertEquals(3,lform.getSpeed());
+        Human lform2 = new Human("Bob", 40, -1);
+        assertEquals(0, lform2.getArmorPoints());
+
+    }
+
+
 	//lab 3 tests
 	@Test
 	public void testAttack()
@@ -20,7 +33,7 @@ public class TestHuman
 		john.takeHit(bob.attack());
 		assertEquals(40, john.currentLifePoints);
 	}
-	
+
 	@Test
 	public void testArmor()
 	{
@@ -43,15 +56,8 @@ public class TestHuman
 		assertEquals(95, bob.currentLifePoints);
 	}
 	//lab 1-2 tests
-	@Test
-	public void testConstruct()
-	{
-		LifeForm lform = new Human("Bob", 40, 10);
-		assertNotNull(lform);
-		Human lform2 = new Human("Bob", 40, -1);
-		assertEquals(0, lform2.getArmorPoints());
-	}
-	
+
+
 	@Test
 	public void testGetArmorPoints()
 	{

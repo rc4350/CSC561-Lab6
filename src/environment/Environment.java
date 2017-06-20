@@ -7,26 +7,26 @@ import weapon.Weapon;
 
 /**
  * Holds 2D array of cells
- * and can add or remove lifeforms from cells 
+ * and can add or remove lifeforms from cells
  * @author Ryan Campbell
  *
  */
-public class Environment 
+public class Environment
 {
 	private static Environment theWorld;
-	private Cell cell[][];  
+	private Cell cell[][];
 	private int myrow;
 	private int mycol;
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * @param row the number of rows
 	 * @param col the number of columns
 	 */
 	private Environment(int row, int col) {
 		//save number of rows and columns for bounds checks
-		myrow = row; 
+		myrow = row;
 		mycol = col;
 		cell = new Cell[row][col]; //initialize cell[][]
 		for(int i = 0; i <row; i++)
@@ -34,7 +34,7 @@ public class Environment
 			for (int j = 0; j<col; j++)
 				cell[i][j] = new Cell();
 		}
-		
+
 	}
 	/**
 	 * initializes theWorld
@@ -54,7 +54,7 @@ public class Environment
 		}
 	}
 	/**
-	 * 
+	 *
 	 * @return theWorld
 	 */
 	public static Environment getInstanceOf()
@@ -68,9 +68,9 @@ public class Environment
 	{
 		theWorld = null;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param gcrow row index
 	 * @param gccol column index
 	 * @return LifeForm in cell at index
@@ -141,7 +141,7 @@ public class Environment
 		}
 		else
 			return cell[row][col].addWeapon(wpn);
-		
+
 	}
 	/**
 	 * removes weapon from the cell if able
@@ -190,8 +190,102 @@ public class Environment
 			y =Math.abs((oneLocation[1] - twoLocation[1])*5);
 			distance = (int) Math.sqrt((x*x)+(y*y));
 			return distance;
-			
+
 		}
-		
+
 	}
+	/**
+	 * Will move a LifeForm based on its speed and direction.
+	 * @param life
+	 */
+    public void moveLifeForm(LifeForm life)
+    {
+        int[] loc = new int[2];
+        loc[0] = life.getLocation()[0];
+        loc[1] = life.getLocation()[1];
+        int dest = -1;
+        int spd = life.getSpeed();
+        this.removeLifeForm(loc[0], loc[1]);
+        if (life.getCurrentDirection() == LifeForm.EAST)
+        {
+            if (checkMoveEdge(loc[0], loc[1]+spd))
+                dest = loc[1] + spd;
+            else
+                dest = mycol-1;
+
+            while (!checkCellEmpty(loc[0],dest))
+                 dest--;
+
+             this.addLifeForm(life, loc[0], dest);
+        }
+        else if (life.getCurrentDirection() == LifeForm.WEST)
+        {
+            if (checkMoveEdge(loc[0], loc[1]-spd))
+                dest = loc[1] - spd;
+            else
+                dest = 0;
+
+            while (!checkCellEmpty(loc[0],dest))
+                 dest++;
+
+             this.addLifeForm(life, loc[0], dest);
+        }
+        else if (life.getCurrentDirection() == LifeForm.NORTH)
+        {
+            if (checkMoveEdge(loc[0]-spd, loc[1]))
+                dest = loc[0] - spd;
+            else
+                dest = 0;
+
+            while (!checkCellEmpty(dest,loc[1]))
+                 dest++;
+
+             this.addLifeForm(life, dest, loc[1]);
+        }
+        else if (life.getCurrentDirection() == LifeForm.SOUTH)
+        {
+            if (checkMoveEdge(loc[0]+spd, loc[1]))
+                dest = loc[0] + spd;
+            else
+                dest = myrow-1;
+
+            while (!checkCellEmpty(dest,loc[1]))
+                 dest--;
+
+             this.addLifeForm(life, dest, loc[1]);
+        }
+
+    }
+
+    /**
+     * Checks to make sure a location in the Environment is within bounds.
+     * @param row
+     * @param col
+     * @return
+     */
+    private boolean checkMoveEdge(int row, int col)
+    {
+      //check that bounds are correct
+        if (row >= myrow || col >=mycol)
+        {
+            return false;
+        }
+        if (row < 0 || col < 0)
+            return false;
+        return true;
+    }
+
+    /**
+     * Checks if there is a life form in the requested cell.
+     * Assumes it is a valid cell in the environment.
+     * @param row
+     * @param col
+     * @return
+     */
+    private boolean checkCellEmpty(int row, int col)
+    {
+        if (cell[row][col].getLifeForm() == null)
+            return true;
+        return false;
+    }
 }

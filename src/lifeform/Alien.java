@@ -7,7 +7,7 @@ import recovery.RecoveryNone;
 import exceptions.MyNewException;
 
 /**
- * 
+ *
  * @author Ryan Campbell
  * Class to hold Alien - LifeForm
  *
@@ -31,8 +31,9 @@ public class Alien extends LifeForm implements TimeObserver
 		super(name, life);
 		maxLifePoints = life;
 		recoveryBehavior = rb;
+		speed = 2;
 		super.setAttackPoints(10);
-		
+
 	}
 	/**
 	 * constructor without recovery behavior
@@ -73,7 +74,7 @@ public class Alien extends LifeForm implements TimeObserver
 	 * @param rb
 	 * @param ap
 	 * @param rt
-	 * @throws MyNewException 
+	 * @throws MyNewException
 	 */
 	public Alien(String name, int life, RecoveryBehavior rb, int ap, int rt) throws MyNewException
 	{
@@ -84,7 +85,7 @@ public class Alien extends LifeForm implements TimeObserver
 			MyNewException e = new MyNewException();
 			throw e;
 		}
-				
+
 	}
 	/**
 	 * changes the current life points of alien (this.super.currentLifePoints)
@@ -94,7 +95,7 @@ public class Alien extends LifeForm implements TimeObserver
 	{
 		super.currentLifePoints = newLifePoints;
 	}
-	
+
 	/**
 	 * executes alien's recovery behavior
 	 */

@@ -13,10 +13,39 @@ import weapon.Pistol;
  *
  */
 
-public class TestLifeForm 
+public class TestLifeForm
 {
+    // Lab 6 Tests
+    @Test
+    public void testInitialization()
+    {
+        LifeForm entity;
+        entity = new MockLifeForm("Bob", 40);
+        assertEquals("Bob", entity.getName());
+        assertEquals(40, entity.getCurrentLifePoints());
+        assertEquals(0,entity.attackPoints);
+        assertEquals(0, entity.getSpeed());
+        assertEquals(LifeForm.NORTH,entity.getCurrentDirection());
+    }
+
+    @Test
+    public void testChangeDirection()
+    {
+        LifeForm entity;
+        entity = new MockLifeForm("Bob", 40);
+        // This should be enough
+        entity.changeDirection(LifeForm.SOUTH);
+        assertEquals(LifeForm.SOUTH,entity.getCurrentDirection());
+        // Running these just to ensure the other constants are there.
+        entity.changeDirection(LifeForm.EAST);
+        assertEquals(LifeForm.EAST,entity.getCurrentDirection());
+        entity.changeDirection(LifeForm.WEST);
+        assertEquals(LifeForm.WEST,entity.getCurrentDirection());
+    }
+
+
 	//Lab 5 Test
-	
+
 	@Test
 	public void testSetLocation()
 	{
@@ -25,13 +54,13 @@ public class TestLifeForm
 		int testlocation[] = new int[2];
 		testlocation[0] = 0;
 		testlocation[1] = 0;
-		
+
 		for(int i = 0; i<2; i++)
 		{
 			assertEquals(testlocation[i], mf.location[i]);
 		}
 	}
-	
+
 	@Test
 	public void testGetLocation()
 	{
@@ -40,60 +69,60 @@ public class TestLifeForm
 		int testlocation[] = new int[2];
 		testlocation[0] = 0;
 		testlocation[1] = 0;
-		
+
 		int lfLocation[] = mf.getLocation();
-		
+
 		for(int i = 0; i<2; i++)
 		{
 			assertEquals(testlocation[i], lfLocation[i]);
 		}
 	}
-	
+
 	@Test
 	public void testDistanceRightAngle()
 	{
 		MockLifeForm mf1 = new MockLifeForm("Bob", 40, 10);
 		MockLifeForm mf2 = new MockLifeForm("Joe", 40, 10);
-		
+
 		//checking same column
 		mf1.setLocation(0,0);
 		mf2.setLocation(0,1);
 		assertEquals(5, mf1.getDistance(mf2));
-		
+
 		mf1.setLocation(0, 1);
 		mf2.setLocation(0, 0);
 		assertEquals(5, mf1.getDistance(mf2));
-		
+
 		//checking same row
 		mf1.setLocation(1, 1);
 		mf2.setLocation(3, 1);
 		assertEquals(10, mf1.getDistance(mf2));
-		
+
 		mf1.setLocation(5, 1);
 		mf2.setLocation(3, 1);
 		assertEquals(10, mf1.getDistance(mf2));
-		
+
 	}
-	
+
 	@Test
 	public void testDistanceDiagonal()
 	{
 		MockLifeForm mf1 = new MockLifeForm("Bob", 40, 10);
 		MockLifeForm mf2 = new MockLifeForm("Joe", 40, 10);
-		
+
 		mf1.setLocation(0,0);
 		mf2.setLocation(2,3);
 		assertEquals(18, mf1.getDistance(mf2));
-		
+
 		mf1.setLocation(2,3);
 		mf2.setLocation(0,0);
 		assertEquals(18, mf1.getDistance(mf2));
-		
+
 	}
-	
-	
+
+
 	//Lab 4 tests
-	
+
 	/**
 	 * testPickup
 	 * can pickup a weapon
@@ -104,11 +133,11 @@ public class TestLifeForm
 		LifeForm entity;
 		entity = new MockLifeForm("Bob", 40, 10);
 		Pistol pl = new Pistol();
-		
+
 		entity.pickUpWeapon(pl);
 		assertEquals(entity.baseWeapon, pl);
 	}
-	
+
 	/**
 	 * testCanNotPickupWeapon
 	 * can't pickup a weapon if already carrying a weapon
@@ -124,7 +153,7 @@ public class TestLifeForm
 		entity.pickUpWeapon(pl2);
 		assertEquals(entity.baseWeapon, pl);
 	}
-	
+
 	/**
 	 * testDropWeapon
 	 * life form drop the weapon
@@ -139,7 +168,7 @@ public class TestLifeForm
 		entity.dropWeapon();
 		assertEquals(entity.baseWeapon, null);
 	}
-	
+
 	/**
 	 * testWeaponForDamageWithammo
 	 * uses weapon for damage if has ammo
@@ -157,7 +186,7 @@ public class TestLifeForm
 		assertEquals(32,entity2.currentLifePoints);
         assertEquals(9,pl.getActualAmmo());
 	}
-	
+
 	/**
 	 * testWeaponForDamageWithOutAmmo
 	 * uses weapon for damage if has not ammo
@@ -166,7 +195,7 @@ public class TestLifeForm
 	@Test
 	public void testWeaponForDamageWithOutAmmo()
 	{
-		
+
 		Range.distance = 10;
 		LifeForm entity, entity2;
 		entity = new MockLifeForm("Bob", 40, 10);
@@ -184,7 +213,7 @@ public class TestLifeForm
 		assertEquals(20,entity2.currentLifePoints);
         assertEquals(0,pl.getActualAmmo());
 	}
-	
+
 	/**
 	 * testWeaponForDamageWithammo
 	 * attack strength does 0 damage if range > 10 feet
@@ -192,7 +221,7 @@ public class TestLifeForm
 	@Test
 	public void attackStrengthDoesZeroDamage()
 	{
-				
+
 		Range.distance = 10;
 		LifeForm entity, entity2;
 		entity = new MockLifeForm("Bob", 40, 10);
@@ -204,7 +233,7 @@ public class TestLifeForm
 		assertEquals(40,entity2.currentLifePoints);
         assertEquals(0,pl.getActualAmmo());
 	}
-	
+
 	/**
 	 * reloadWeapon
 	 * can reload a weapon
@@ -229,14 +258,14 @@ public class TestLifeForm
 		assertEquals(0, mf.round);
 		timr.timeChanged();
 		assertEquals(1, mf.round);
-		
+
 	}
-	
+
 	@Test
 	public void testAttack()
 	{
 		LifeForm lf = new MockLifeForm("Bob", 40, 10);
-		assertEquals(10, lf.attack());	
+		assertEquals(10, lf.attack());
 	}
 	@Test
 	public void testAttackHit()
@@ -252,16 +281,9 @@ public class TestLifeForm
 		MockLifeForm ml = new MockLifeForm("Bob", 0, 10);
 		assertEquals(0, ml.attack());
 	}
-	
+
 	//lab 1-2 tests
-	@Test
-	public void testInitialization()
-	{
-		LifeForm entity;
-		entity = new MockLifeForm("Bob", 40);
-		assertEquals("Bob", entity.getName());
-		assertEquals(40, entity.getCurrentLifePoints());
-	}
+
 
 	@Test
 	public void testHit()
@@ -270,7 +292,7 @@ public class TestLifeForm
 		mlf.takeHit(10);
 		assertEquals(30, mlf.currentLifePoints);
 	}
-	
+
 	@Test
 	public void testHitNegative()
 	{
