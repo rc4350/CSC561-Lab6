@@ -2,7 +2,6 @@ package environment;
 
 import exceptions.MyNewException;
 import lifeform.LifeForm;
-import weapon.Pistol;
 import weapon.Weapon;
 
 /**
@@ -64,7 +63,7 @@ public class Environment
 	/**
 	 * resets environment for testing purposes
 	 */
-	protected static void reset()
+	public static void reset()
 	{
 		theWorld = null;
 	}
@@ -288,4 +287,24 @@ public class Environment
             return true;
         return false;
     }
+    
+    /**
+     * 
+     * @param location location of cell to get weapon 1 from
+     * @return returns weaponOne of the specified cell
+     */
+	public Weapon getWeapon1(int[] location)
+	{
+		return cell[location[0]][location[1]].getWeaponOne();
+	}
+	/**
+     * 
+     * @param location location of cell to get weapon 2 from
+     * @return returns weaponTwoof the specified cell
+     */
+	public Weapon getWeapon2(int[] location)
+	{
+		return cell[location[0]][location[1]].getWeaponTwo();
+	}
+
 }
