@@ -324,7 +324,7 @@ public class Environment
 			while(nearest == null && row >=0 )
 			{
 				//System.out.println("row: "+row+"  col: "+col); //debug
-				if((nearest=cell[row][col].getLifeForm()) != null)
+				if((nearest=cell[row][col].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 				{
 					return  nearest;
 				}
@@ -333,11 +333,11 @@ public class Environment
 					for(int i = 1; i <= offset; i++)
 					{
 						//System.out.println("row: "+row+"  colo: "+(col-i));  //debug
-						if(col-i >= 0 && (nearest=cell[row][col-i].getLifeForm()) != null)
+						if(col-i >= 0 && (nearest=cell[row][col-i].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 						{
 							return nearest;
 						}
-						else if(col+i < mycol && (nearest=cell[row][col+i].getLifeForm()) != null)
+						else if(col+i < mycol && (nearest=cell[row][col+i].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 						{
 							return nearest;
 						}
@@ -356,7 +356,7 @@ public class Environment
 			while(nearest == null && col >= 0)
 			{
 	
-				if((nearest=cell[row][col].getLifeForm()) != null)
+				if((nearest=cell[row][col].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 				{
 					return  nearest;
 				}
@@ -365,11 +365,11 @@ public class Environment
 					for(int i = 1; i <= offset; i++)
 					{
 						//System.out.println("row: "+row+"  colo: "+(col-i));  //debug
-						if(row+i < mycol&& (nearest=cell[row+i][col].getLifeForm()) != null)
+						if(row+i < mycol&& (nearest=cell[row+i][col].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 						{
 							return nearest;
 						}
-						else if(row-i >= 0  && (nearest=cell[row-i][col].getLifeForm()) != null)
+						else if(row-i >= 0  && (nearest=cell[row-i][col].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 						{
 							return nearest;
 						}
@@ -388,7 +388,7 @@ public class Environment
 			while(nearest == null && row <myrow )
 			{
 	
-				if((nearest=cell[row][col].getLifeForm()) != null)
+				if((nearest=cell[row][col].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 				{
 					return  nearest;
 				}
@@ -397,11 +397,11 @@ public class Environment
 					for(int i = 1; i <= offset; i++)
 					{
 						//System.out.println("row: "+row+"  colo: "+(col-i));  //debug
-						if(col+i < mycol && (nearest=cell[row][col+i].getLifeForm()) != null)
+						if(col+i < mycol && (nearest=cell[row][col+i].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 						{
 							return nearest;
 						}
-						else if(col-i >= 0 && (nearest=cell[row][col-i].getLifeForm()) != null)
+						else if(col-i >= 0 && (nearest=cell[row][col-i].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 						{
 							return nearest;
 						}
@@ -420,7 +420,7 @@ public class Environment
 			while(nearest == null && col <mycol)
 			{
 	
-				if((nearest=cell[row][col].getLifeForm()) != null)
+				if((nearest=cell[row][col].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 				{
 					return  nearest;
 				}
@@ -429,11 +429,11 @@ public class Environment
 					for(int i = 1; i <= offset; i++)
 					{
 						//System.out.println("row: "+row+"  colo: "+(col-i));  //debug
-						if(row-i >= 0&& (nearest=cell[row-i][col].getLifeForm()) != null)
+						if(row-i >= 0&& (nearest=cell[row-i][col].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 						{
 							return nearest;
 						}
-						else if(row+i < mycol && (nearest=cell[row+i][col].getLifeForm()) != null)
+						else if(row+i < mycol && (nearest=cell[row+i][col].getLifeForm()) != null && focus.getClass() != nearest.getClass())
 						{
 							return nearest;
 						}

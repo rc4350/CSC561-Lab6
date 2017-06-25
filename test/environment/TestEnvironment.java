@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exceptions.MyNewException;
+import lifeform.Alien;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 import weapon.Pistol;
@@ -194,15 +195,21 @@ public class TestEnvironment
     {
     	Environment.initialize(10, 10);
     	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
-    	MockLifeForm joe = new MockLifeForm("Joe", 100, 10);
-    	MockLifeForm red = new MockLifeForm("Red", 100, 10);
+    	Alien joe = new Alien("Joe", 100, 10);
+    	Alien red = new Alien("Red", 100, 10);
+    	MockLifeForm fd = new MockLifeForm("Friend", 40, 10);
     	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
     	assertNull(Environment.getInstanceOf().findNearest(bob));
+    	
+    	Environment.getInstanceOf().addLifeForm(fd, 3, 4);
+    	assertNull(Environment.getInstanceOf().findNearest(bob));
+    	Environment.getInstanceOf().removeLifeForm(3, 4);
     	
     	Environment.getInstanceOf().addLifeForm(joe, 3, 4);
     	Environment.getInstanceOf().addLifeForm(red, 3, 3);
     	bob.changeDirection(LifeForm.NORTH);
-    	//System.out.println(""+bob.getLocation()[0]+ " "+bob.getLocation()[1]);
+    
+    	
     	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
     	
     	Environment.getInstanceOf().removeLifeForm(3, 4);
@@ -220,8 +227,8 @@ public class TestEnvironment
     {
       	Environment.initialize(10, 10);
     	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
-    	MockLifeForm joe = new MockLifeForm("Joe", 100, 10);
-    	MockLifeForm red = new MockLifeForm("Red", 100, 10);
+    	Alien joe = new Alien("Joe", 100, 10);
+    	Alien red = new Alien("Red", 100, 10);
     	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
     	bob.changeDirection(LifeForm.SOUTH);
     	assertNull(Environment.getInstanceOf().findNearest(bob));
@@ -235,8 +242,8 @@ public class TestEnvironment
     {
       	Environment.initialize(10, 10);
     	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
-    	MockLifeForm joe = new MockLifeForm("Joe", 100, 10);
-    	MockLifeForm red = new MockLifeForm("Red", 100, 10);
+    	Alien joe = new Alien("Joe", 100, 10);
+    	Alien red = new Alien("Red", 100, 10);
     	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
     	bob.changeDirection(LifeForm.EAST);
     	assertNull(Environment.getInstanceOf().findNearest(bob));
@@ -250,8 +257,8 @@ public class TestEnvironment
     {
     	Environment.initialize(10, 10);
     	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
-    	MockLifeForm joe = new MockLifeForm("Joe", 100, 10);
-    	MockLifeForm red = new MockLifeForm("Red", 100, 10);
+    	Alien joe = new Alien("Joe", 100, 10);
+    	Alien red = new Alien("Red", 100, 10);
     	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
     	bob.changeDirection(LifeForm.WEST);
     	assertNull(Environment.getInstanceOf().findNearest(bob));
