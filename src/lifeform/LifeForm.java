@@ -1,5 +1,6 @@
 package lifeform;
 
+import environment.Environment;
 import gameplay.SimpleTimer;
 import gameplay.TimeObserver;
 import gameplay.Timer;
@@ -72,12 +73,28 @@ public class LifeForm implements TimeObserver
 	}
 
 	/**
+	 * updated 6/24 so weapon properly enters cell when dropped
 	 * dropWeapon
 	 * Life form drop the weapon
 	 */
-	public void dropWeapon()
+	public boolean dropWeapon()
 	{
-		baseWeapon = null;
+		if(baseWeapon != null)
+		{
+			boolean wpntocell;
+			wpntocell = Environment.getInstanceOf().addWeapon(baseWeapon, location[0], location[1]);
+			if (wpntocell == true)
+			{
+				baseWeapon = null;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+			return false;
 	}
 
 
@@ -234,6 +251,13 @@ public class LifeForm implements TimeObserver
     {
         currentDirection = dir;
 
+    }
+    public void reload()
+    {
+    	if(baseWeapon != null)
+    	{
+    		baseWeapon.reload();
+    	}
     }
 }
 

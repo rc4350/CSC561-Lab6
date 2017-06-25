@@ -1,11 +1,15 @@
 package lifeform;
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import environment.Environment;
 import environment.Range;
+import exceptions.MyNewException;
 import gameplay.SimpleTimer;
 import weapon.Pistol;
+import weapon.PlasmaCannon;
 
 /**
  *  Test LifeForm class
@@ -15,6 +19,11 @@ import weapon.Pistol;
 
 public class TestLifeForm
 {
+	@Before
+	public void reset()
+	{
+		Environment.reset();
+	}
     // Lab 6 Tests
     @Test
     public void testInitialization()
@@ -42,8 +51,34 @@ public class TestLifeForm
         entity.changeDirection(LifeForm.WEST);
         assertEquals(LifeForm.WEST,entity.getCurrentDirection());
     }
-
-
+    @Test
+    public void testReload()
+    {
+    	MockLifeForm mf = new MockLifeForm("Bob", 10);
+    	Pistol pl = new Pistol();
+    	mf.pickUpWeapon(pl);
+    	pl.setActualAmmo(0);
+    	mf.reload();
+    	assertEquals(pl.getMaxAmmo(), pl.getActualAmmo());
+    }
+    @Test
+    public void testDropFix() throws MyNewException
+    {
+    	Environment.initialize(4, 4);
+		MockLifeForm mf = new MockLifeForm("A", 10);
+		Pistol pl = new Pistol();
+		PlasmaCannon  pc = new PlasmaCannon();
+		Pistol pl2 = new Pistol();
+		Environment.getInstanceOf().addLifeForm(mf, 1, 1);
+		assertFalse(mf.dropWeapon());
+		mf.pickUpWeapon(pl);
+		assertTrue(mf.dropWeapon());
+		assertNull(mf.getWeapon());
+		assertEquals(pl, Environment.getInstanceOf().getWeapon1(mf.getLocation()));
+		Environment.getInstanceOf().addWeapon(pc, 1, 1);
+		mf.pickUpWeapon(pl2);
+		assertFalse(mf.dropWeapon());
+    }
 	//Lab 5 Test
 
 	@Test
@@ -157,14 +192,17 @@ public class TestLifeForm
 	/**
 	 * testDropWeapon
 	 * life form drop the weapon
+	 * @throws MyNewException 
 	 */
 	@Test
-	public void testDropWeapon()
+	public void testDropWeapon() throws MyNewException
 	{
+		Environment.initialize(4, 4);
 		LifeForm entity;
 		entity = new MockLifeForm("Bob", 40, 10);
 		Pistol pl = new Pistol();
 		entity.pickUpWeapon(pl);
+		Environment.getInstanceOf().addLifeForm(entity, 1, 1);
 		entity.dropWeapon();
 		assertEquals(entity.baseWeapon, null);
 	}

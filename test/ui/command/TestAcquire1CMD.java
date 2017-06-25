@@ -11,7 +11,7 @@ import lifeform.MockLifeForm;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
 
-public class TestAcquireCMD
+public class TestAcquire1CMD
 {
 
 	@Before

@@ -307,4 +307,60 @@ public class Environment
 		return cell[location[0]][location[1]].getWeaponTwo();
 	}
 
+	public LifeForm findNearest(LifeForm focus)
+	{
+		LifeForm nearest = null;
+		int row;
+		int col;
+		//holds values for life for search
+		int leftOffset;
+		int rightOffset;
+		int offset;
+		if(focus.getCurrentDirection() == LifeForm.NORTH)
+		{
+			row = focus.getLocation()[0]+1;
+			col = focus.getLocation()[1];
+			leftOffset = col -1;
+			rightOffset = col +1;
+			offset = 1;
+			while(nearest == null && row >=0 )
+			{
+				if((nearest=cell[row][col].getLifeForm()) != null)
+				{
+					return  nearest;
+				}
+				else
+				{
+					for(int i = 1; i <= offset; i++)
+					{
+						if(col-i >= 0 && (nearest=cell[row][col-i].getLifeForm()) != null)
+						{
+							return nearest;
+						}
+						else if(col+i < mycol && (nearest=cell[row][col+i].getLifeForm()) != null)
+						{
+							return nearest;
+						}
+					}
+					row++;
+					offset++;
+				}
+			}
+		}
+		else if(focus.getCurrentDirection() == LifeForm.EAST)
+		{
+			
+		}
+		else if(focus.getCurrentDirection() == LifeForm.SOUTH)
+		{
+			
+		}
+		else if(focus.getCurrentDirection() == LifeForm.WEST)
+		{
+			
+		}
+		else
+			return null;
+		return null;
+	}
 }
