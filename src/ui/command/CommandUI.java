@@ -3,11 +3,15 @@ package ui.command;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class CommandUI
+import lifeform.LifeForm;
+
+public class CommandUI implements ActionListener
 {
 	//JPanels used in command ui
 	private JPanel mainPanel;
@@ -17,6 +21,10 @@ public class CommandUI
 	private JButton north, south, east, west;
 	//buttons used in eastPanel for actions
 	private JButton move, attack, reload, pickup1, pickup2, drop;
+	
+	private CommandInterface turnNorth, turnEast, turnSouth, turnWest, attackComand, reloadComand, moveComand,
+	pickup1Comand, pickup2Comand, dropComand;
+	
 	
 	public CommandUI()
 	{
@@ -29,6 +37,8 @@ public class CommandUI
 		mainPanel.add("West", westPanel);
 		mainPanel.add("East", eastPanel);
 		
+		
+		
 	}
 	
 	/**
@@ -40,6 +50,10 @@ public class CommandUI
 		south = new JButton("S");
 		east = new JButton("E");
 		west = new JButton("W");
+		
+		north.addActionListener(this);
+		
+		
 		westPanel.add("North", north);
 		westPanel.add("South", south);
 		westPanel.add("West", west);
@@ -72,6 +86,16 @@ public class CommandUI
 	{
 		// TODO Auto-generated method stub
 		return mainPanel;
+	}
+
+	/**
+	 * handles action events
+	 */
+	@Override
+	public void actionPerformed(ActionEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 }

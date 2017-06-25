@@ -317,8 +317,8 @@ public class Environment
 	public Weapon getWeapon( int row, int col)
 	{
 			return cell[row][col].getWeaponOne();
-	}
 
+<<<<<<< Updated upstream
 	public LifeForm findNearest(LifeForm focus)
 	{
 		LifeForm nearest = null;
@@ -458,7 +458,8 @@ public class Environment
 		else
 			return null;
 		return null;
-
+=======
+>>>>>>> Stashed changes
 	}
 	/**
 	 * the attacker life attacks the nearest enemy if able
@@ -474,3 +475,6 @@ public class Environment
 		
 	}
 }
+
+	}
+

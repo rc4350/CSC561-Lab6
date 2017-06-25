@@ -1,6 +1,8 @@
 package ui.command;
 
-public interface CommandInterface
+import java.awt.event.ActionListener;
+
+public interface CommandInterface 
 {
 	public void executeCMD();
 }

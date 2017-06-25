@@ -260,7 +260,7 @@ public class LifeForm implements TimeObserver
     		baseWeapon.reload();
     	}
     }
-
+=======
     
     /**
    	 * has Weapon the lifeForm?
@@ -282,5 +282,9 @@ public class LifeForm implements TimeObserver
    	{
    		return baseWeapon; 
    	}
+>>>>>>> Stashed changes
 }
 
+
+
+   	}
