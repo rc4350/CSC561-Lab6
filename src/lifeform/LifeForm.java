@@ -252,7 +252,7 @@ public class LifeForm implements TimeObserver
         currentDirection = dir;
 
     }
-<<<<<<< Updated upstream
+
     public void reload()
     {
     	if(baseWeapon != null)
@@ -260,7 +260,7 @@ public class LifeForm implements TimeObserver
     		baseWeapon.reload();
     	}
     }
-=======
+
     
     /**
    	 * has Weapon the lifeForm?
@@ -282,6 +282,6 @@ public class LifeForm implements TimeObserver
    	{
    		return baseWeapon; 
    	}
->>>>>>> Stashed changes
+
 }
 
