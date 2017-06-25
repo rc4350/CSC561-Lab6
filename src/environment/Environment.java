@@ -313,18 +313,17 @@ public class Environment
 		int row;
 		int col;
 		//holds values for life for search
-		int leftOffset;
-		int rightOffset;
+		
 		int offset;
 		if(focus.getCurrentDirection() == LifeForm.NORTH)
 		{
-			row = focus.getLocation()[0]+1;
+			row = focus.getLocation()[0]-1;
 			col = focus.getLocation()[1];
-			leftOffset = col -1;
-			rightOffset = col +1;
 			offset = 1;
+				
 			while(nearest == null && row >=0 )
 			{
+				//System.out.println("row: "+row+"  col: "+col); //debug
 				if((nearest=cell[row][col].getLifeForm()) != null)
 				{
 					return  nearest;
@@ -333,6 +332,7 @@ public class Environment
 				{
 					for(int i = 1; i <= offset; i++)
 					{
+						//System.out.println("row: "+row+"  colo: "+(col-i));  //debug
 						if(col-i >= 0 && (nearest=cell[row][col-i].getLifeForm()) != null)
 						{
 							return nearest;
@@ -342,22 +342,106 @@ public class Environment
 							return nearest;
 						}
 					}
-					row++;
+					row--;
 					offset++;
 				}
 			}
 		}
 		else if(focus.getCurrentDirection() == LifeForm.EAST)
 		{
-			
+			row = focus.getLocation()[0];
+			col = focus.getLocation()[1]-1;
+			offset = 1;
+				
+			while(nearest == null && col >= 0)
+			{
+	
+				if((nearest=cell[row][col].getLifeForm()) != null)
+				{
+					return  nearest;
+				}
+				else
+				{
+					for(int i = 1; i <= offset; i++)
+					{
+						//System.out.println("row: "+row+"  colo: "+(col-i));  //debug
+						if(row+i < mycol&& (nearest=cell[row+i][col].getLifeForm()) != null)
+						{
+							return nearest;
+						}
+						else if(row-i >= 0  && (nearest=cell[row-i][col].getLifeForm()) != null)
+						{
+							return nearest;
+						}
+					}
+					col--;
+					offset++;
+				}
+			}
 		}
 		else if(focus.getCurrentDirection() == LifeForm.SOUTH)
 		{
-			
+			row = focus.getLocation()[0]+1;
+			col = focus.getLocation()[1];
+			offset = 1;
+				
+			while(nearest == null && row <myrow )
+			{
+	
+				if((nearest=cell[row][col].getLifeForm()) != null)
+				{
+					return  nearest;
+				}
+				else
+				{
+					for(int i = 1; i <= offset; i++)
+					{
+						//System.out.println("row: "+row+"  colo: "+(col-i));  //debug
+						if(col+i < mycol && (nearest=cell[row][col+i].getLifeForm()) != null)
+						{
+							return nearest;
+						}
+						else if(col-i >= 0 && (nearest=cell[row][col-i].getLifeForm()) != null)
+						{
+							return nearest;
+						}
+					}
+					row++;
+					offset++;
+				}
+			}
 		}
 		else if(focus.getCurrentDirection() == LifeForm.WEST)
 		{
-			
+			row = focus.getLocation()[0];
+			col = focus.getLocation()[1]+1;
+			offset = 1;
+				
+			while(nearest == null && col <mycol)
+			{
+	
+				if((nearest=cell[row][col].getLifeForm()) != null)
+				{
+					return  nearest;
+				}
+				else
+				{
+					for(int i = 1; i <= offset; i++)
+					{
+						//System.out.println("row: "+row+"  colo: "+(col-i));  //debug
+						if(row-i >= 0&& (nearest=cell[row-i][col].getLifeForm()) != null)
+						{
+							return nearest;
+						}
+						else if(row+i < mycol && (nearest=cell[row+i][col].getLifeForm()) != null)
+						{
+							return nearest;
+						}
+					}
+					col++;
+					offset++;
+				}
+			}
 		}
 		else
 			return null;

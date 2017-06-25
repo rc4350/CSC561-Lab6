@@ -188,6 +188,77 @@ public class TestEnvironment
         assertEquals(3,ml1.getLocation()[0]);
         assertEquals(0,ml1.getLocation()[1]);
     }
+    
+    @Test
+    public void testFindNearestNorth() throws MyNewException
+    {
+    	Environment.initialize(10, 10);
+    	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
+    	MockLifeForm joe = new MockLifeForm("Joe", 100, 10);
+    	MockLifeForm red = new MockLifeForm("Red", 100, 10);
+    	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
+    	assertNull(Environment.getInstanceOf().findNearest(bob));
+    	
+    	Environment.getInstanceOf().addLifeForm(joe, 3, 4);
+    	Environment.getInstanceOf().addLifeForm(red, 3, 3);
+    	bob.changeDirection(LifeForm.NORTH);
+    	//System.out.println(""+bob.getLocation()[0]+ " "+bob.getLocation()[1]);
+    	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
+    	
+    	Environment.getInstanceOf().removeLifeForm(3, 4);
+    	Environment.getInstanceOf().addLifeForm(joe, 3, 5);
+    	assertEquals(red, Environment.getInstanceOf().findNearest(bob));
+    	Environment.getInstanceOf().removeLifeForm(3, 3);
+    	Environment.getInstanceOf().addLifeForm(red, 2, 4);
+    	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
+    	Environment.getInstanceOf().removeLifeForm(3, 5);
+    	assertEquals(red, Environment.getInstanceOf().findNearest(bob));
+    }
+    
+    @Test
+    public void testFindNearestSouth() throws MyNewException
+    {
+      	Environment.initialize(10, 10);
+    	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
+    	MockLifeForm joe = new MockLifeForm("Joe", 100, 10);
+    	MockLifeForm red = new MockLifeForm("Red", 100, 10);
+    	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
+    	bob.changeDirection(LifeForm.SOUTH);
+    	assertNull(Environment.getInstanceOf().findNearest(bob));
+    	Environment.getInstanceOf().addLifeForm(joe, 6, 5);
+    	Environment.getInstanceOf().addLifeForm(red, 7, 4);
+    	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
+    }
+    
+    @Test
+    public void testFindNearestEast() throws MyNewException
+    {
+      	Environment.initialize(10, 10);
+    	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
+    	MockLifeForm joe = new MockLifeForm("Joe", 100, 10);
+    	MockLifeForm red = new MockLifeForm("Red", 100, 10);
+    	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
+    	bob.changeDirection(LifeForm.EAST);
+    	assertNull(Environment.getInstanceOf().findNearest(bob));
+    	Environment.getInstanceOf().addLifeForm(joe, 7, 0);
+    	Environment.getInstanceOf().addLifeForm(red, 3, 4);
+    	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
+    	
+    }
+    
+    @Test public void testFindNearestWest() throws MyNewException
+    {
+    	Environment.initialize(10, 10);
+    	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
+    	MockLifeForm joe = new MockLifeForm("Joe", 100, 10);
+    	MockLifeForm red = new MockLifeForm("Red", 100, 10);
+    	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
+    	bob.changeDirection(LifeForm.WEST);
+    	assertNull(Environment.getInstanceOf().findNearest(bob));
+    	Environment.getInstanceOf().addLifeForm(joe, 2, 6);
+    	Environment.getInstanceOf().addLifeForm(red, 6, 6);
+    	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
+    }
 	//lab 5 tests
 	@Before
 	public void reset()
