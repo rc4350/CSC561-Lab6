@@ -266,6 +266,21 @@ public class TestEnvironment
     	Environment.getInstanceOf().addLifeForm(red, 6, 6);
     	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
     }
+    
+    @Test
+    public void testAttack() throws MyNewException
+    {
+    	Environment.initialize(10, 10);
+    	MockLifeForm bob = new MockLifeForm("Bob", 40, 10);
+    	Alien joe = new Alien("Joe", 100, 10);
+    	Environment.getInstanceOf().addLifeForm(bob, 2, 0);
+    	Environment.getInstanceOf().addLifeForm(joe, 3, 2);
+    	Environment.getInstanceOf().Attack(bob);
+    	assertEquals(100, joe.getCurrentLifePoints());
+    	bob.changeDirection(LifeForm.WEST);
+    	Environment.getInstanceOf().Attack(bob);
+    	assertEquals(90,joe.getCurrentLifePoints());
+    }
 	//lab 5 tests
 	@Before
 	public void reset()

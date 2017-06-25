@@ -1,7 +1,9 @@
 package environment;
 
 import exceptions.MyNewException;
+import lifeform.Alien;
 import lifeform.LifeForm;
+import lifeform.MockLifeForm;
 import weapon.Weapon;
 
 /**
@@ -446,5 +448,18 @@ public class Environment
 		else
 			return null;
 		return null;
+	}
+	/**
+	 * the attacker life attacks the nearest enemy if able
+	 * @param attacker
+	 */
+	public  void Attack(LifeForm attacker)
+	{
+		LifeForm defender = findNearest(attacker);
+		if(defender!= null)
+		{
+			defender.takeHit(attacker.attack(getDistance(attacker, defender)));
+		}
+		
 	}
 }
