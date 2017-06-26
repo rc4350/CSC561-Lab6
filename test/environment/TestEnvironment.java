@@ -247,7 +247,7 @@ public class TestEnvironment
     	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
     	bob.changeDirection(LifeForm.EAST);
     	assertNull(Environment.getInstanceOf().findNearest(bob));
-    	Environment.getInstanceOf().addLifeForm(joe, 7, 0);
+    	Environment.getInstanceOf().addLifeForm(joe, 6, 6);
     	Environment.getInstanceOf().addLifeForm(red, 3, 4);
     	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
     	
@@ -262,7 +262,7 @@ public class TestEnvironment
     	Environment.getInstanceOf().addLifeForm(bob, 4, 4);
     	bob.changeDirection(LifeForm.WEST);
     	assertNull(Environment.getInstanceOf().findNearest(bob));
-    	Environment.getInstanceOf().addLifeForm(joe, 2, 6);
+    	Environment.getInstanceOf().addLifeForm(joe, 4, 2);
     	Environment.getInstanceOf().addLifeForm(red, 6, 6);
     	assertEquals(joe, Environment.getInstanceOf().findNearest(bob));
     }
@@ -280,6 +280,14 @@ public class TestEnvironment
     	bob.changeDirection(LifeForm.WEST);
     	Environment.getInstanceOf().Attack(bob);
     	assertEquals(90,joe.getCurrentLifePoints());
+    }
+    @Test
+    public void testSetPlayer() throws MyNewException
+    {
+    	Environment.initialize(4, 4);
+    	MockLifeForm mf = new MockLifeForm("Bob", 40);
+    	Environment.getInstanceOf().setPlayer(mf);
+    	assertEquals(mf, Environment.getInstanceOf().getPlayer());
     }
 	//lab 5 tests
 	@Before

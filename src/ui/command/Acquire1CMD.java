@@ -2,6 +2,7 @@ package ui.command;
 
 import environment.Environment;
 import lifeform.LifeForm;
+import weapon.Weapon;
 
 public class Acquire1CMD implements CommandInterface
 {
@@ -17,7 +18,12 @@ public class Acquire1CMD implements CommandInterface
 	@Override
 	public void executeCMD()
 	{
-		lifeForm.pickUpWeapon(world.getWeapon1(lifeForm.getLocation()));
+		Weapon wpn = world.getWeapon1(lifeForm.getLocation());
+		if( wpn != null)
+		{		
+			lifeForm.pickUpWeapon(wpn);
+			Environment.getInstanceOf().removeWeapon(wpn, lifeForm.getLocation()[0], lifeForm.getLocation()[1]);
+		}
 	}
 
 	/**

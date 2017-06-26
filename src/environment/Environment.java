@@ -18,6 +18,7 @@ public class Environment
 	private Cell cell[][];
 	private int myrow;
 	private int mycol;
+	private LifeForm player;
 
 
 	/**
@@ -308,16 +309,16 @@ public class Environment
 	{
 		return cell[location[0]][location[1]].getWeaponTwo();
 	}
-	/**
+	/*/**
 	 * getWeapon
 	 * @param row
 	 * @param col
 	 * @return
-	 */
+	 
 	public Weapon getWeapon( int row, int col)
 	{
 			return cell[row][col].getWeaponOne();
-	}
+	}*/
     
 	public LifeForm findNearest(LifeForm focus)
 	{
@@ -359,7 +360,7 @@ public class Environment
 				}
 			}
 		}
-		else if(focus.getCurrentDirection() == LifeForm.EAST)
+		else if(focus.getCurrentDirection() == LifeForm.WEST)
 		{
 			row = focus.getLocation()[0];
 			col = focus.getLocation()[1]-1;
@@ -423,7 +424,7 @@ public class Environment
 				}
 			}
 		}
-		else if(focus.getCurrentDirection() == LifeForm.WEST)
+		else if(focus.getCurrentDirection() == LifeForm.EAST)
 		{
 			row = focus.getLocation()[0];
 			col = focus.getLocation()[1]+1;
@@ -472,5 +473,23 @@ public class Environment
 			defender.takeHit(attacker.attack(getDistance(attacker, defender)));
 		}
 		
+	}
+	/**
+	 * sets the player character
+	 * @param lf player character
+	 */
+	public void setPlayer(LifeForm lf)
+	{
+		player = lf;
+		
+	}
+	/**
+	 * gets the player character
+	 * @return player
+	 */
+	public LifeForm getPlayer()
+	{
+	
+		return player;
 	}
 }

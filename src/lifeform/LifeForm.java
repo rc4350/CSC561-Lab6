@@ -69,6 +69,7 @@ public class LifeForm implements TimeObserver
 		if(baseWeapon == null)
 		{
 			baseWeapon = wp;
+		
 		}
 	}
 
