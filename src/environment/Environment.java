@@ -1,9 +1,7 @@
 package environment;
 
 import exceptions.MyNewException;
-import lifeform.Alien;
 import lifeform.LifeForm;
-import lifeform.MockLifeForm;
 import weapon.Weapon;
 
 /**
@@ -309,16 +307,16 @@ public class Environment
 	{
 		return cell[location[0]][location[1]].getWeaponTwo();
 	}
-	/*/**
+	/**
 	 * getWeapon
 	 * @param row
 	 * @param col
 	 * @return
-	 
+	 */
 	public Weapon getWeapon( int row, int col)
 	{
 			return cell[row][col].getWeaponOne();
-	}*/
+	}
     
 	public LifeForm findNearest(LifeForm focus)
 	{

@@ -24,6 +24,7 @@ import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
 import ui.command.Acquire1CMD;
+import ui.command.CommandUI;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
 import weapon.Weapon;
@@ -37,6 +38,9 @@ import javax.swing.JSeparator;
 public class GUI extends JFrame implements ActionListener {
 
 	private JPanel map, legend;
+	private JPanel layer1;
+	private JPanel commandPanel;
+	private CommandUI commandUI;
 	JButton[][] SquareBtn;
 	private static Environment e; //the game environment
 	static final int rows = 8; 
@@ -65,12 +69,20 @@ public class GUI extends JFrame implements ActionListener {
 
 		Environment.initialize(rows, cols);
 		e = Environment.getInstanceOf();
+		Human h1 = new Human("Bob", 15, 3);
+		e.setPlayer(h1);
+		e.addLifeForm(h1, 4, 4);
+		
 		
 		/**
 		 * Map
 		 */
+		
 		map = new JPanel();
 		map.setLayout(new BorderLayout());
+		
+		
+		
 		map = new JPanel(new GridLayout(rows, cols));
 		map.setPreferredSize(new Dimension(rows, cols));
 		map.setBorder(new TitledBorder(null, "MAP", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -88,6 +100,11 @@ public class GUI extends JFrame implements ActionListener {
 			}
 		}
 		getContentPane().add("Center",map);
+		
+		//ryan edit
+				commandUI = new CommandUI();
+				commandPanel = commandUI.getPanel();
+				getContentPane().add("South", commandPanel);
 		
 		/**
 		 * Legend
@@ -133,9 +150,15 @@ public class GUI extends JFrame implements ActionListener {
 		 * HUMAN
 		 */
 		ImageIcon imgIcon;
-		Human h1 = new Human("Bob", 15, 3);
+		/*Human h1 = new Human("Bob", 15, 3);
+		e.setPlayer(h1);
 		e.addLifeForm(h1, 4, 4);
 		
+		//ryan edit
+		commandUI = new CommandUI();
+		commandPanel = commandUI.getPanel();
+		//layer1.add("South", commandPanel);
+		//end*/
 		imgIcon = (ImageIcon) SquareBtn[4][4].getIcon();  
 		SquareBtn[4][4].setIcon(iconHuman(imgIcon, h1));
 		
@@ -149,6 +172,11 @@ public class GUI extends JFrame implements ActionListener {
 		SquareBtn[4][5].setIcon(iconAlien(imgIcon, a1));
 		Acquire1CMD acq = new Acquire1CMD(a1);
 		
+		//ryan edit
+		//getContentPane().add("Center",map);
+		//getContentPane().add("East",legend);
+		//getContentPane().add("South", commandPanel);
+		//emd
 		/**
 		 * WEAPONS
 		 */
