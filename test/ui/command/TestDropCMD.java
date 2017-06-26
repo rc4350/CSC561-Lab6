@@ -35,6 +35,15 @@ public class TestDropCMD
 	}
 	
 	@Test
+	public void testNull() throws MyNewException
+	{
+		Environment.initialize(4, 4);
+		DropCMD ci = new DropCMD(Environment.getInstanceOf().getPlayer());
+		ci.executeCMD();
+		assertTrue(true);	//code did not crash
+	}
+	
+	@Test
 	public void testDrop() throws MyNewException
 	{
 		Environment.initialize(4, 4);

@@ -250,7 +250,10 @@ public class LifeForm implements TimeObserver
      */
     public void changeDirection(char dir)
     {
-        currentDirection = dir;
+    	if(dir == LifeForm.EAST || dir == LifeForm.NORTH || dir == LifeForm.SOUTH ||dir == LifeForm.WEST)
+    		currentDirection = dir;
+    	else
+    		currentDirection = LifeForm.NORTH;
 
     }
 

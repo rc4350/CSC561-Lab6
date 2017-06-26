@@ -23,9 +23,15 @@ public class AttackCMD implements CommandInterface
 	@Override
 	public void executeCMD()
 	{
-		world.Attack(player);
-	}
+		if(player != null)
+		{
+			world.Attack(player);
 	
+		}
+	}
+	/**
+	 * test code
+	 */
 	protected LifeForm getPlayer()
 	{
 		return player;

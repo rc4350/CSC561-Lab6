@@ -36,6 +36,15 @@ public class TestMoveCMD
 	}
 
 	@Test
+	public void testNull() throws MyNewException
+	{
+		Environment.initialize(4, 4);
+		MoveCMD ci = new MoveCMD(Environment.getInstanceOf().getPlayer());
+		ci.executeCMD();
+		assertTrue(true);	//code did not crash
+	}
+	
+	@Test
 	public void testMove() throws MyNewException
 	{
 		Environment.initialize(4, 4);

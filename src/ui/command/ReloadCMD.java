@@ -18,7 +18,9 @@ public class ReloadCMD implements CommandInterface
 	@Override
 	public void executeCMD()
 	{
-		player.reload();
+		if (player != null)
+		{
+			player.reload();
+		}
 	}
-
 }

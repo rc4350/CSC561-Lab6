@@ -1,4 +1,4 @@
-package lifeform;
+package ui.command;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import environment.Environment;
+import exceptions.MyNewException;
+import lifeform.LifeForm;
+import lifeform.MockLifeForm;
 import ui.command.CommandInterface;
 import ui.command.TurnCMD;
 
@@ -23,10 +26,28 @@ public class TestTurnCMD
 		MockLifeForm mf = new MockLifeForm("A", 10);
 		CommandInterface turn = new TurnCMD(mf, 'n');
 		assertNotNull(turn);
-		assertTrue(turn instanceof CommandInterface);
-		
-		
+		assertTrue(turn instanceof CommandInterface);	
 	}
+	
+	@Test
+	public void testNullPlayer() throws MyNewException
+	{
+		Environment.initialize(4, 4);
+		TurnCMD ci = new TurnCMD(Environment.getInstanceOf().getPlayer(), LifeForm.NORTH);
+		ci.executeCMD();
+		assertTrue(true);	//code did not crash	
+	}
+	@Test
+	public void testBadDirection() throws MyNewException
+	{
+		Environment.initialize(4, 4);
+		MockLifeForm mf = new MockLifeForm("A", 10);
+		Environment.getInstanceOf().setPlayer(mf);
+		TurnCMD ci = new TurnCMD(Environment.getInstanceOf().getPlayer(), 'x');
+		ci.executeCMD();
+		assertTrue(true);	//code did not crash	
+	}
+	
 	@Test
 	public void testTurn()
 	{

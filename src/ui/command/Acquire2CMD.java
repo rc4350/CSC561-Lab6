@@ -10,23 +10,26 @@ import weapon.Weapon;
 
 public class Acquire2CMD implements CommandInterface
 {
-	private LifeForm lifeForm;
+	private LifeForm player;
 	private Environment world;
 	
-	public Acquire2CMD(LifeForm player)
+	public Acquire2CMD(LifeForm lf)
 	{
 		world = Environment.getInstanceOf();
-		lifeForm = player;
+		player = lf;
 	}
 	
 	@Override
 	public void executeCMD()
 	{
-		Weapon wpn = world.getWeapon2(lifeForm.getLocation());
-		if( wpn != null)
-		{		
-			lifeForm.pickUpWeapon(wpn);
-			Environment.getInstanceOf().removeWeapon(wpn, lifeForm.getLocation()[0], lifeForm.getLocation()[1]);
+		if(player != null)
+		{
+			Weapon wpn = world.getWeapon2(player.getLocation());
+			if (wpn != null)
+			{
+				player.pickUpWeapon(wpn);
+				Environment.getInstanceOf().removeWeapon(wpn, player.getLocation()[0], player.getLocation()[1]);
+			}
 		}
 	}
 
@@ -41,6 +44,6 @@ public class Acquire2CMD implements CommandInterface
 	public LifeForm getLifeForm()
 	{
 		// TODO Auto-generated method stub
-		return lifeForm;
+		return player;
 	}
 }

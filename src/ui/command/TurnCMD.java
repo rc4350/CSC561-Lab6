@@ -20,8 +20,10 @@ public class TurnCMD implements CommandInterface
 	@Override
 	public void executeCMD()
 	{
-		player.changeDirection(direction);
-
+		if(player != null)
+		{
+			player.changeDirection(direction);
+		}
 	}
 
 }

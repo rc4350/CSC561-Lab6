@@ -37,6 +37,15 @@ public class TestAcquire1CMD
 	}
 
 	@Test
+	public void testNull() throws MyNewException
+	{
+		Environment.initialize(4, 4);
+		Acquire1CMD ci = new Acquire1CMD(Environment.getInstanceOf().getPlayer());
+		ci.executeCMD();
+		assertTrue(true);	//code did not crash
+	}
+	
+	@Test
 	public void testAcquire() throws MyNewException
 	{
 		Environment.initialize(4, 4);

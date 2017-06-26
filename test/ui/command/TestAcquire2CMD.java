@@ -35,7 +35,14 @@ public class TestAcquire2CMD
 		assertEquals(Environment.getInstanceOf(), ci.getWorld());
 		assertEquals(mf, ci.getLifeForm());
 	}
-
+	@Test
+	public void testNull() throws MyNewException
+	{
+		Environment.initialize(4, 4);
+		Acquire2CMD ci = new Acquire2CMD(Environment.getInstanceOf().getPlayer());
+		ci.executeCMD();
+		assertTrue(true);	//code did not crash
+	}
 	@Test
 	public void testAcquire() throws MyNewException
 	{

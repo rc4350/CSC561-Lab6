@@ -52,6 +52,14 @@ public class TestLifeForm
         assertEquals(LifeForm.WEST,entity.getCurrentDirection());
     }
     @Test
+    public void testInvalidDirection()
+    {
+    	MockLifeForm mf = new MockLifeForm("Bob", 40);
+    	mf.changeDirection('x');
+    	assertEquals(LifeForm.NORTH, mf.getCurrentDirection());
+    }
+    
+    @Test
     public void testReload()
     {
     	MockLifeForm mf = new MockLifeForm("Bob", 10);

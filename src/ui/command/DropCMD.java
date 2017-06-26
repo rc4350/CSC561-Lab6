@@ -22,11 +22,14 @@ public class DropCMD implements CommandInterface
 	
 		return player;
 	}
+	
 	@Override
 	public void executeCMD()
 	{
-		player.dropWeapon();
-		
+		if(player != null)
+		{
+			player.dropWeapon();
+		}
 	}
 
 }

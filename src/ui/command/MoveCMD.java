@@ -24,8 +24,10 @@ public class MoveCMD implements CommandInterface
 	@Override
 	public void executeCMD()
 	{
-		world.moveLifeForm(player);
-
+		if(player != null)
+		{
+			world.moveLifeForm(player);
+		}
 	}
 	/**
 	 * 

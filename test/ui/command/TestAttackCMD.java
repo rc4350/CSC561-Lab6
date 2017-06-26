@@ -38,6 +38,15 @@ public class TestAttackCMD
 	}
 	
 	@Test
+	public void testNull() throws MyNewException
+	{
+		Environment.initialize(4, 4);
+		AttackCMD ci = new AttackCMD(Environment.getInstanceOf().getPlayer());
+		ci.executeCMD();
+		assertTrue(true);	//code did not crash
+	}
+	
+	@Test
 	public void testAttack() throws MyNewException
 	{
 		Environment.initialize(4, 4);
