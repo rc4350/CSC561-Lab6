@@ -102,9 +102,9 @@ public class GUI extends JFrame implements ActionListener {
 		getContentPane().add("Center",map);
 		
 		//ryan edit
-				commandUI = new CommandUI();
-				commandPanel = commandUI.getPanel();
-				getContentPane().add("South", commandPanel);
+		commandUI = new CommandUI();
+		commandPanel = commandUI.getPanel();
+		getContentPane().add("South", commandPanel);
 		
 		/**
 		 * Legend
