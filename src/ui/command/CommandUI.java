@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * ui for commands
+ * @author Ryan Campbell
+ *
+ */
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

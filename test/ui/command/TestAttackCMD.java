@@ -1,5 +1,10 @@
 package ui.command;
 
+/**
+ * Runs tests for attack command
+ * @author Ryan Campbell
+ *
+ */
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -41,7 +46,7 @@ public class TestAttackCMD
 		Alien al = new Alien("Al", 100);
 		
 		Environment.getInstanceOf().addLifeForm(mf, 1, 0);
-		mf.changeDirection(LifeForm.WEST);
+		mf.changeDirection(LifeForm.EAST);
 		Environment.getInstanceOf().addLifeForm(al, 2, 2);
 		ac.executeCMD();
 		assertEquals(80, al.getCurrentLifePoints());

@@ -277,7 +277,7 @@ public class TestEnvironment
     	Environment.getInstanceOf().addLifeForm(joe, 3, 2);
     	Environment.getInstanceOf().Attack(bob);
     	assertEquals(100, joe.getCurrentLifePoints());
-    	bob.changeDirection(LifeForm.WEST);
+    	bob.changeDirection(LifeForm.EAST);
     	Environment.getInstanceOf().Attack(bob);
     	assertEquals(90,joe.getCurrentLifePoints());
     }

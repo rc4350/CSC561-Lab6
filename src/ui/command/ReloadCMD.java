@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * reload command
+ * @author Ryan Campbell
+ *
+ */
 import lifeform.LifeForm;
 
 public class ReloadCMD implements CommandInterface

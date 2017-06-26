@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * Runs tests for command builder
+ * @author Ryan Campbell
+ *
+ */
 import static org.junit.Assert.*;
 
 import org.junit.Test;

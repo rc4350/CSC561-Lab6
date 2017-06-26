@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * aquire command
+ * @author Ryan Campbell
+ *
+ */
 import environment.Environment;
 import lifeform.LifeForm;
 import weapon.Weapon;

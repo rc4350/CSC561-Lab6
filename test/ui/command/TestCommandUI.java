@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * Runs tests for  command ui
+ * @author Ryan Campbell
+ *
+ */
 import static org.junit.Assert.*;
 
 import javax.swing.JFrame;

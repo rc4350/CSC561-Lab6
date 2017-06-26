@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * Runs tests for reload command
+ * @author Ryan Campbell
+ *
+ */
 import static org.junit.Assert.*;
 
 import org.junit.Before;

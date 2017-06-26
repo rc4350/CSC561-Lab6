@@ -9,6 +9,14 @@ import lifeform.TestHuman;
 import lifeform.TestLifeForm;
 import recovery.TestRecoveryFractional;
 import recovery.TestRecoveryNone;
+import ui.command.TestAcquire1CMD;
+import ui.command.TestAcquire2CMD;
+import ui.command.TestAttackCMD;
+import ui.command.TestCommandBuilder;
+import ui.command.TestCommandUI;
+import ui.command.TestDropCMD;
+import ui.command.TestMoveCMD;
+import ui.command.TestReloadCMD;
 import weapon.TestAttachment;
 import weapon.TestAttachmentWrap;
 import weapon.TestGenericWeapon;
@@ -41,7 +49,15 @@ import recovery.TestRecoveryLinear;
 	TestPistoL.class,
 	TestPlasmaCannon.class,
 	TestScope.class,
-	TestStabilizer.class
+	TestStabilizer.class,
+	TestAcquire1CMD.class,
+	TestAcquire2CMD.class,
+	TestAttackCMD.class,
+	TestCommandBuilder.class,
+	TestCommandUI.class,
+	TestDropCMD.class,
+	TestMoveCMD.class,
+	TestReloadCMD.class
 })
 
 public class AllGameTests {

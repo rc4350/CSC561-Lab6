@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * turn command
+ * @author Ryan Campbell
+ *
+ */
 import lifeform.LifeForm;
 
 public class TurnCMD implements CommandInterface

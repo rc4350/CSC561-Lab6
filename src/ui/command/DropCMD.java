@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * drop command
+ * @author Ryan Campbell
+ *
+ */
 import lifeform.LifeForm;
 
 public class DropCMD implements CommandInterface

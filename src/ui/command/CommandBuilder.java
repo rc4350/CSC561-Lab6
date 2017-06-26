@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * command builder
+ * @author Ryan Campbell
+ *
+ */
 import lifeform.LifeForm;
 
 public class CommandBuilder

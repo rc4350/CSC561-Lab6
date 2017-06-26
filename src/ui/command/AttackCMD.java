@@ -1,5 +1,9 @@
 package ui.command;
-
+/**
+ * attack command
+ * @author Ryan Campbell
+ *
+ */
 import environment.Environment;
 import lifeform.LifeForm;
 
