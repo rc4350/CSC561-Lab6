@@ -34,15 +34,17 @@ import javax.swing.border.TitledBorder;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import javax.swing.JSeparator;
-
+/**
+ *GUI class for the Graphical User Interface(GUI).
+ */
 public class GUI extends JFrame implements ActionListener {
 
-	private JPanel map, legend;
+	private JPanel map, legend, map_1;
 	private JPanel layer1;
 	private JPanel commandPanel;
 	private CommandUI commandUI;
 	JButton[][] SquareBtn;
-	private static Environment e; //the game environment
+	static Environment e; //the game environment
 	static final int rows = 8; 
     static final int cols = 8;
     int sizeGrid = 70;
@@ -65,27 +67,18 @@ public class GUI extends JFrame implements ActionListener {
 	public GUI() throws MyNewException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 840, 640);
-		setTitle("Aliens vs Humans");
+		setTitle("Aliens vs Humans");  //title of the panel
 
 		Environment.initialize(rows, cols);
 		e = Environment.getInstanceOf();
-		Human h1 = new Human("Bob", 15, 3);
-		e.setPlayer(h1);
-		e.addLifeForm(h1, 4, 4);
-		
-		
-		/**
-		 * Map
-		 */
-		
+	
+		// Map
 		map = new JPanel();
 		map.setLayout(new BorderLayout());
+		map_1 = new JPanel(new GridLayout(rows, cols));
+		map_1.setPreferredSize(new Dimension(rows, cols));
+		map_1.setBorder(new TitledBorder(null, "MAP", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		
-		
-		map = new JPanel(new GridLayout(rows, cols));
-		map.setPreferredSize(new Dimension(rows, cols));
-		map.setBorder(new TitledBorder(null, "MAP", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		//Adding buttons in Jpanel Map
 		SquareBtn = new JButton[rows][cols];
 		for(int i = 0; i < rows; i ++)
@@ -99,16 +92,14 @@ public class GUI extends JFrame implements ActionListener {
 				map.add(SquareBtn[i][j]);
 			}
 		}
-		getContentPane().add("Center",map);
+		getContentPane().add("Center",map_1);
 		
 		//ryan edit
 		commandUI = new CommandUI();
 		commandPanel = commandUI.getPanel();
 		getContentPane().add("South", commandPanel);
 		
-		/**
-		 * Legend
-		 */
+		//Legend
 		legend = new JPanel();
 		legend.setBorder(new TitledBorder(null, "LEGEND", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		legend.setPreferredSize(new Dimension(200, 600)); 
@@ -145,87 +136,22 @@ public class GUI extends JFrame implements ActionListener {
 		separator2.setMinimumSize(new Dimension(180, 5));
 		legend.add(separator2);
 		setVisible(true);
-
-		/**
-		 * HUMAN
-		 */
-		ImageIcon imgIcon;
-		/*Human h1 = new Human("Bob", 15, 3);
-		e.setPlayer(h1);
-		e.addLifeForm(h1, 4, 4);
-		
-		//ryan edit
-		commandUI = new CommandUI();
-		commandPanel = commandUI.getPanel();
-		//layer1.add("South", commandPanel);
-		//end*/
-		imgIcon = (ImageIcon) SquareBtn[4][4].getIcon();  
-		SquareBtn[4][4].setIcon(iconHuman(imgIcon, h1));
-		
-		/**
-		 * ALIEN
-		 */
-		Alien a1 = new Alien("Alien", 30);
-		e.addLifeForm(a1, 4, 5);
-		
-		imgIcon = (ImageIcon) SquareBtn[4][5].getIcon(); 
-		SquareBtn[4][5].setIcon(iconAlien(imgIcon, a1));
-		Acquire1CMD acq = new Acquire1CMD(a1);
-		
-		//ryan edit
-		//getContentPane().add("Center",map);
-		//getContentPane().add("East",legend);
-		//getContentPane().add("South", commandPanel);
-		//emd
-		/**
-		 * WEAPONS
-		 */
-				// 1 WEAPON
-				Pistol gun = new Pistol();
-				e.addWeapon(gun, 1, 2);
-				imgIcon = (ImageIcon) SquareBtn[1][2].getIcon(); 
-				SquareBtn[1][2].setIcon(iconWeaponOne(imgIcon, 0));
-				
-				// 2 Weapon
-				PlasmaCannon pc = new PlasmaCannon();
-				e.addWeapon(pc, 6, 2);
-				imgIcon = (ImageIcon) SquareBtn[6][2].getIcon(); 
-				SquareBtn[6][2].setIcon(iconWeaponTwo(imgIcon, 0));
-				
-				//Alien with weapon
-				Alien a2 = new Alien("Predator", 30);
-				Pistol gun3 = new Pistol();
-				a2.pickUpWeapon(gun3);
-				e.addLifeForm(a2, 3, 2);
-
-				imgIcon = (ImageIcon) SquareBtn[3][2].getIcon(); 
-				SquareBtn[3][2].setIcon(iconAlien(imgIcon, a2));
-				
-				//Human with weapon 
-				Human h2 = new Human("Flash", 30, 10);
-				Pistol gun4 = new Pistol();
-				h2.pickUpWeapon(gun4);
-				e.addLifeForm(h2, 6, 6);
-
-				imgIcon = (ImageIcon) SquareBtn[6][6].getIcon(); 
-				SquareBtn[6][6].setIcon(iconHuman(imgIcon, h2));
 	}
-	
-	/**
-	 * New cell
-	 * @return
-	 */
-	public ImageIcon createCell()
-    {
-		 BufferedImage cell = new 
-		 BufferedImage(sizeGrid,sizeGrid,BufferedImage.TYPE_3BYTE_BGR);
-		 Graphics drawer = cell.getGraphics();              	        
-		 return new ImageIcon(cell);
-    }
-	
+		/**
+		 * create new cell
+		 * @return
+		 */
+		public ImageIcon createCell()
+	    {
+			 BufferedImage cell = new 
+			 BufferedImage(sizeGrid,sizeGrid,BufferedImage.TYPE_3BYTE_BGR);
+			 Graphics drawer = cell.getGraphics();              	        
+			 return new ImageIcon(cell);
+	    }
+
 	/**
 	 * human icon
-	 * @return
+	 * @return human's image icon
 	 */
 	public ImageIcon iconHuman(ImageIcon icon, Human human )
     {
@@ -262,7 +188,7 @@ public class GUI extends JFrame implements ActionListener {
     }
 	/**
 	 * alien icon
-	 * @return
+	 * @return alien's image icon
 	 */
 	public ImageIcon iconAlien(ImageIcon icon, Alien alien)
     {
@@ -282,7 +208,6 @@ public class GUI extends JFrame implements ActionListener {
 		if(alien.hasWeapon())
 		{
 			Weapon wp = alien.getWeapon();
-			
 			if(wp.getAttachmentCount() == 0)
 			{
 				drawer.setColor(weaponC);
@@ -302,6 +227,12 @@ public class GUI extends JFrame implements ActionListener {
 		        
 		return new ImageIcon(bi); 
     }
+	/**
+	 * weapon one icon
+	 * @param icon
+	 * @param attachment
+	 * @return weapon's image icon
+	 */
 	public ImageIcon iconWeaponOne(ImageIcon icon, int attachment )
     {
 		BufferedImage bi = new BufferedImage(
@@ -325,7 +256,12 @@ public class GUI extends JFrame implements ActionListener {
     		 drawer.fillRect(0, 0, 10, 10);	       
 		     return new ImageIcon(bi);
     }
-	
+	/**
+	 * weapon two icon
+	 * @param icon
+	 * @param attachment
+	 * @return weapon's image icon
+	 */
 	public ImageIcon iconWeaponTwo(ImageIcon icon, int attachment )
     {
 		BufferedImage bi = new BufferedImage(
@@ -351,16 +287,6 @@ public class GUI extends JFrame implements ActionListener {
 		 return new ImageIcon(bi); 
     }
 
-	/**
-	 * Main
-	 * @param args
-	 * @throws MyNewException 
-	 */
-	public static void main(String[] args) throws MyNewException
-	{
-		GUI gui = new GUI();
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent event) 
 	{
@@ -375,7 +301,7 @@ public class GUI extends JFrame implements ActionListener {
 			
 			LifeForm life = e.getLifeForm(rowFromMap, colFromMap);
 			Weapon wp = e.getWeapon(rowFromMap, colFromMap);
-
+			 
 			if(life != null)
 			{
 				TextStats = "<html>"
