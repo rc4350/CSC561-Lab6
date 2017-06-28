@@ -89,7 +89,7 @@ public class GUI extends JFrame implements ActionListener {
 				SquareBtn[i][j].setBackground(Color.BLACK);
 				SquareBtn[i][j].setActionCommand("pos: "+i+" "+j);
 				SquareBtn[i][j].addActionListener(this);
-				map.add(SquareBtn[i][j]);
+				map_1.add(SquareBtn[i][j]);
 			}
 		}
 		getContentPane().add("Center",map_1);
@@ -328,5 +328,39 @@ public class GUI extends JFrame implements ActionListener {
 			}
 			lblStats.setText(TextStats);
 		}
+	}
+	/**
+	 * update method
+	 * @param row
+	 * @param col
+	 * @param lf
+	 */
+	
+	public void update(int row, int col, LifeForm lf, Weapon wp1, Weapon wp2)
+	{
+		ImageIcon imgTemp = createCell();
+		
+		System.out.println("Forma de vida "+e.getLifeForm(row,col));
+		
+		if(lf instanceof Human)
+		{
+			imgTemp = (ImageIcon) SquareBtn[row][col].getIcon();  
+			SquareBtn[row][col].setIcon(iconHuman(imgTemp, (Human)lf));
+			
+		}else if(lf instanceof Alien)
+		{
+			imgTemp = (ImageIcon) SquareBtn[row][col].getIcon();  
+			SquareBtn[row][col].setIcon(iconAlien(imgTemp, (Alien)lf));
+		}else if(wp1 != null)
+		{
+			imgTemp = (ImageIcon) SquareBtn[row][col].getIcon();  
+			SquareBtn[row][col].setIcon(iconWeaponOne(imgTemp, 0));
+			
+		}else if(wp2 != null)
+		{
+			imgTemp = (ImageIcon) SquareBtn[row][col].getIcon();  
+			SquareBtn[row][col].setIcon(iconWeaponTwo(imgTemp, 0));
+		}
+
 	}
 }

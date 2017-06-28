@@ -18,7 +18,6 @@ import weapon.PlasmaCannon;
 
 public class TestGameDisplay
 {
-	private static Environment e ;
 
 	/**
 	 * TEST MAP
@@ -28,59 +27,22 @@ public class TestGameDisplay
 	public void testMap() throws MyNewException
 	{
 		GUI gui = new GUI();
-		
-		ImageIcon imgIcon;
-		Human h1 = new Human("Bob", 15, 3);
- 
-		gui.e.addLifeForm(h1, 4, 4);
-		
-		imgIcon = (ImageIcon) gui.SquareBtn[4][4].getIcon();  
-		gui.SquareBtn[4][4].setIcon(gui.iconHuman(imgIcon, h1));
-		
+		Environment en = Environment.getInstanceOf();
+		//add human to the environment
+		Human h1 = new Human("Bob", 15, 3); 
+		en.addLifeForm(h1, 4, 4);
+		gui.update(4,4,h1,null,null);
+		//add alien to the environment
+		Alien a1 = new Alien("Alien", 30);
+		en.addLifeForm(a1, 4, 5);
+		gui.update(4,5,a1,null,null);
+		//add weapons to the environment
+		Pistol gun = new Pistol();
+		en.addWeapon(gun, 1, 2);
+		gui.update(1,2,null,gun,null);
+
 		assertEquals(JOptionPane.YES_OPTION,JOptionPane.showConfirmDialog(null, "Is the Human icon in the cell (4)(4) \nDoes it look right?"));
 	
-		/**
-		 * ALIEN
-		 */
-		Alien a1 = new Alien("Alien", 30);
-		gui.e.addLifeForm(a1, 4, 5);
-		
-		imgIcon = (ImageIcon) gui.SquareBtn[4][5].getIcon(); 
-		gui.SquareBtn[4][5].setIcon(gui.iconAlien(imgIcon, a1));
-	
-		/**
-		 * WEAPONS
-		 */
-		// 1 WEAPON
-		Pistol gun = new Pistol();
-		gui.e.addWeapon(gun, 1, 2);
-		imgIcon = (ImageIcon) gui.SquareBtn[1][2].getIcon(); 
-		gui.SquareBtn[1][2].setIcon(gui.iconWeaponOne(imgIcon, 0));
-			
-		// 2 Weapon
-		PlasmaCannon pc = new PlasmaCannon();
-		gui.e.addWeapon(pc, 6, 2);
-		imgIcon = (ImageIcon) gui.SquareBtn[6][2].getIcon(); 
-		gui.SquareBtn[6][2].setIcon(gui.iconWeaponTwo(imgIcon, 0));
-				
-		//Alien with weapon
-		Alien a2 = new Alien("Predator", 30);
-		Pistol gun3 = new Pistol();
-		a2.pickUpWeapon(gun3);
-		gui.e.addLifeForm(a2, 3, 2);
-
-		imgIcon = (ImageIcon) gui.SquareBtn[3][2].getIcon(); 
-		gui.SquareBtn[3][2].setIcon(gui.iconAlien(imgIcon, a2));
-				
-		//Human with weapon 
-		Human h2 = new Human("Flash", 30, 10);
-		Pistol gun4 = new Pistol();
-		h2.pickUpWeapon(gun4);
-		gui.e.addLifeForm(h2, 6, 6);
-
-		imgIcon = (ImageIcon) gui.SquareBtn[6][6].getIcon(); 
-		gui.SquareBtn[6][6].setIcon(gui.iconHuman(imgIcon, h2));		
-
 		assertEquals(JOptionPane.YES_OPTION,JOptionPane.showConfirmDialog(null, "Is the Alien icon in the cell (4)(5) \nDoes it look right?"));
 
 		assertEquals(JOptionPane.YES_OPTION,JOptionPane.showConfirmDialog(null, "Has the Alien a weapon in the cell (3)(2) \nDoes it look right?"));
